@@ -9,4 +9,18 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
 Tweeter::Application.config.secret_key_base = '8e0ddcb76634525e93664f52bf398c9c168a4eb69a4e88f3b291c51803b5c7208f9c42379d86f28ac672d2f524a19e74be17e623fcbc0c9318bedbdf3c6efc89'
