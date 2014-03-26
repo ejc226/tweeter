@@ -1,5 +1,7 @@
 Tweeter::Application.routes.draw do
   
+  get "members/index"
+  get "members/show"
  #get "users/new"
   
   root  'static_pages#home'
@@ -15,6 +17,7 @@ Tweeter::Application.routes.draw do
   get '/welcome', to: 'welcome#hello'
   
   resources :users
+  resources :members
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
